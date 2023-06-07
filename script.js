@@ -1,4 +1,5 @@
 // fakes movies api
+let moviesSection = document.getElementById("movies-container")
 let fakeMoviesAPI = {
     "dates": {
         "maximum": "2023-06-05",
@@ -75,6 +76,10 @@ let fakeMoviesAPI = {
 }
 
 function generateCards(movieObject){
+    // create movie div container
+    let movieContainer = document.createElement("div");
+    movieContainer.classList.add("movie");
+
     // create star
     let star = document.createElement("span");
     star.classList.add("star");
@@ -94,12 +99,24 @@ function generateCards(movieObject){
     averageContainer.classList.add("average");
     averageContainer.appendChild(star);
     averageContainer.appendChild(rating);
-    document.body.appendChild(averageContainer);
+    movieContainer.appendChild(averageContainer);
 
-    // create image
+    // create movie image
     let image = document.createElement("img");
     image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path;
-    document.body.insertBefore(image, averageContainer);
+    image.alt = "Cover image of " + movieObject.original_title;
+    image.classList.add("movie-image");
+    movieContainer.insertBefore(image, averageContainer);
+
+    // create movie title
+    let movieTitle = document.createElement("div");
+    movieTitle.classList.add("movie-title");
+    movieTitle.innerText = movieObject.original_title;
+    
+    movieContainer.appendChild(movieTitle);
+    
+    // append movie to section
+    moviesSection.appendChild(movieContainer);
 
 }
 generateCards(fakeMoviesAPI.results[0]);
