@@ -104,7 +104,7 @@ function generateCards(movieObject){
     // create movie image
     let image = document.createElement("img");
     image.src = "https://image.tmdb.org/t/p/w342" + movieObject.poster_path;
-    image.alt = "Cover iemage of " + movieObject.original_title;
+    image.alt = "Cover image of " + movieObject.original_title;
     image.classList.add("movie-image");
     movieContainer.insertBefore(image, averageContainer);
 
@@ -119,4 +119,6 @@ function generateCards(movieObject){
     moviesSection.appendChild(movieContainer);
 
 }
-generateCards(fakeMoviesAPI.results[0]);
+fakeMoviesAPI.results.forEach((movieObject) => {
+    generateCards(movieObject);
+});
