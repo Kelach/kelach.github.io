@@ -1,10 +1,8 @@
-📝 **NOTE** Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Week 1 Assignment: Flixster
 
 Submitted by: **Kelechi Emeruwa**
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: **20** hours spent in total
 
 Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
 
@@ -48,15 +46,15 @@ https://www.loom.com/share/5405e8c372b34bb6a04392872d5de5ba
 
 - Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Learning about APIs, asychronous programming, CSS styling tips and tricks, all helped prepare me to complete the project. I felt most unprepared in trying to use my javascript file to create html dynamically. However, i did feel comfortable getting html elment references using getElementBy.. and the querySelector methods.  
+Learning about APIs, asynchronous programming, and CSS styling tips and tricks, all helped prepare me to complete the project. I felt most unprepared in trying to use my javascript file to create html dynamically. However, I did feel comfortable getting html element references using "getElementBy.. ." and the "querySelector" methods.  
 
 - If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-I would try to improve the UI of the website by styling the search and load more button tags more. I also think it would have been beter if I had taken an OOP approach to developing the website by treating each movie card as an object, as well as each movie section. I'd also consider including a dark mode option, and give names to each of my elements for those with screen readers. 
+I would try to improve the UI of the website by styling the search and loading more button tags. I also think it would have been better if I had taken an OOP approach to developing the website by treating each movie card as an object and each movie section. I'd also consider including a dark mode option, and give names to each of my elements for those with screen readers. 
 
 - Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-I really liked Luiz's Object-Oriented implementation of the website, and I would have liked to experient with a similar approach too. I was also impressed by Marwan's animations and would've hoped to include similar features in my website to give it more vibrance. I'm glad I was able to complete the project, while daunting at first I think my overall approach and completion went really well. I'd say almost half of the time dedicated to working in the my project i spent helping others, and I didn't expect things to pick so quickly as we appreciated the deadline.  
+I liked Luiz's Object-Oriented implementation of the website, and I would have liked to experiment with a similar approach too. I was also impressed by Marwan's animations and would've hoped to include similar features in my website to give it more vibrancy. I'm glad I was able to complete the project, and I think my overall approach and completion went well. However, I'd say almost half of the time dedicated to working on my project I spent helping others, and I didn't expect things to pick up so quickly as we appreciated the deadline.  
 
 ### Open-source libraries used
 https://fonts.google.com/icons
