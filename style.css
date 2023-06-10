@@ -1,3 +1,12 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bc);
+}
+:root{
+    --bc: #ffffff ;
+    --movie-card-bc: #fffffff3 ;
+    --movie-card-tint: #e71d36;
+}
 #main-container {
     display: flex;
     flex-direction: column;
@@ -5,14 +14,92 @@
     justify-content: space-between;
     gap: 2rem;
 }
+#search-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 30%;
+}
 .movies-grid {
     display: flex;
-    gap: 5rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0;
 }
 .movie-title {
     font-weight: bolder;
+    word-wrap: break-word;
+    overflow-y: scroll;
+    height: 40px;
+    border-bottom: 2px;
 }
 
+#close-search-btn{
+    overflow: auto;
+    display: flex;
+    height: 25px;
+    width: 25px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7px;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0px #1a1a1ad8;
+    color: var(--movie-card-tint);
+    border-width: 0;
+    opacity: 0;
+    transition: all 250ms ease-in-out;
+    transition-property: opacity, box-shadow;
+}
+
+#close-search-btn.show{
+    opacity: 100;
+}
+#close-search-btn.show:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 1px #1a1a1ad8;
+}
+
+.movie-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* max-width:  ; */
+}
+
+.movie-card{
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    max-height: 700px;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    border-radius: 10%;
+    box-shadow: 0px 0px 0px 0px;
+    font-size: larger;
+    box-shadow: 0px 0px 7px 0px var(--movie-card-tint);
+    margin: 1.5rem;
+    transform: scale(0.97);
+    transition: all 300ms ease-in-out;
+    transition-property: transform, box-shadow;
+}
+.movie-poster{
+    border-radius: 10%;
+}
+.movie-average {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.movie-rating{
+    align-self: start;
+}
+.movie-card:hover{
+    transform: scale(1);
+    box-shadow: 0px 0px 20px 0px var(--movie-card-tint);
+}

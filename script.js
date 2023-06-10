@@ -6,8 +6,14 @@ const options = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZTU0YzFlMzIwMjJhYWM0NDQwZWIyMDNlNGFiNWFkMCIsInN1YiI6IjY0ODIwNDk5OTkyNTljMDBjNWIzNWU3YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RhEo4vH75gwEGmAc5cZSUat9A6OKiwQe2p04-6icfMc'
     }
   };
+
+// movie db api query params + urls
+let pageIndex = 1;
+let movieQuery = ""; 
+let movieSearchUrl = `https://api.themoviedb.org/3/search/movie?query=${movieQuery}&include_adult=false&language=en-US&page=${pageIndex}`
+let nowPlayingURL = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageIndex}`;
+let isSearch = false;
 const totalPages = 30; // update with max number of pages yout csn use
-let pageIndex = 1 // global 
 function generateCard(movieObject){
     let moviesSection = document.getElementById("movies-grid");
 
@@ -15,23 +21,29 @@ function generateCard(movieObject){
     let movieContainer = document.createElement("div");
     movieContainer.classList.add("movie-card");
 
-    // create star
-    let star = document.createElement("span");
-    star.classList.add("star");
-    let starContent = document.createTextNode("⭐️");
-    star.appendChild(starContent);
+    // // create star
+    // let star = document.createElement("span");
+    // star.classList.add("star");
+    // let starContent = document.createTextNode("⭐️");
+    // star.appendChild(starContent);
 
     // create rating
     let rating = document.createElement("span");
-    let ratingContent = document.createTextNode(movieObject.vote_average);
+    let ratingContent = document.createTextNode(`${movieObject.vote_average.toFixed(1)} ⭐️`);
     rating.classList.add("rating");
     rating.appendChild(ratingContent);
 
+    // create votes
+    let votesElement = document.createElement("span");
+    let votes_count = document.createTextNode(`${movieObject.vote_count} votes`);
+    votesElement.classList.add("movie-votes");
+    votesElement.appendChild(votes_count);
+
     // create average container
     let averageContainer = document.createElement("div");
-    averageContainer.classList.add("movie-votes");
-    averageContainer.appendChild(star);
+    averageContainer.classList.add("movie-average");
     averageContainer.appendChild(rating);
+    averageContainer.appendChild(votesElement);
     movieContainer.appendChild(averageContainer);
 
     // create movie image
@@ -50,29 +62,26 @@ function generateCard(movieObject){
     
     // append movie to section
     moviesSection.appendChild(movieContainer);
-
 }
 
-function loadMoreMovieCards(event) {
+async function loadMoreMovieCards(event, url) {
     // gets movies from API then adds 
     // it to the DOM, and filters movie cards
-    inputValue = document.getElementById("search-input").value;
     if (pageIndex > totalPages) alert("No more movies to show!", pageIndex, totalPages);
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageIndex}`, options)
-    .then(response => response.json())
-    .then(data => {
-        console.log("query: ", inputValue)
-        data.results.forEach((movieObject) => {
-            // update html
-            generateCard(movieObject);
-        });
-        // update page index
-        pageIndex += 1
-        console.log("fetched data: ", data);
-    })
-    .catch(err => console.error(err));
 
-    // filter 
+    response = await fetch(url, options);
+    data = await response.json();
+    data.results.forEach((movieObject) => {
+        // update html
+        generateCard(movieObject);
+    });
+    // update search url queries
+    pageIndex += 1
+    movieSearchUrl = `https://api.themoviedb.org/3/search/movie?query=${movieQuery}&include_adult=false&language=en-US&page=${pageIndex}`
+    nowPlayingURL = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageIndex}`;
+    
+    console.log("page index", pageIndex);
+    console.log("fetched data: ", data);
 }
 function filterMovieCards(query, tags=null){
     movieCardsCollection = document.getElementsByClassName("movie-card");
@@ -85,15 +94,46 @@ function filterMovieCards(query, tags=null){
 }
 function handleSearchSubmit(event){
     event.preventDefault();
+    // update movie search queries
+    isSearch = true;
+    document.getElementById("close-search-btn").classList.add("show");
+
+    pageIndex = 1;
+    document.getElementById("movies-grid").innerHTML = "" // resetting movie cards
+    movieSearchUrl = `https://api.themoviedb.org/3/search/movie?query=${movieQuery}&include_adult=false&language=en-US&page=${pageIndex}`
+
     // fetch movie db with new search query
-    loadMoreMovieCards(event);
-    alert("display loader video here");
+    loadMoreMovieCards(event, movieSearchUrl);
+    // alert("display loader video here");
+}
+function handleButtonLoadMore(event){
+    event.preventDefault();
+    url = isSearch ? movieSearchUrl : nowPlayingURL;
+    loadMoreMovieCards(event, url);
+}
+function updateSearchValue(event){
+    movieQuery = event.target.value;
+}
+function resetPage(event){
+    document.getElementById("movies-grid").innerHTML = "" // resetting movie cards
+    isSearch = false;
+    document.getElementById("close-search-btn").classList.remove("show");
+
+    pageIndex = 1;
+    nowPlayingURL = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${pageIndex}`;
+    loadMoreMovieCards(event, nowPlayingURL);
 }
 window.onload = () => {
-    loadMoreMovieCards();
+    loadMoreMovieCards(null, nowPlayingURL);
     // event listeners
     loadMoreButton = document.getElementById("load-more-movies-btn");
-    loadMoreButton.addEventListener("click", loadMoreMovieCards);
+    searchInput = document.getElementById("search-input");
     searchButton = document.querySelector("#search-button");
+    resetButton = document.getElementById("close-search-btn");
+
+    loadMoreButton.addEventListener("click", handleButtonLoadMore);
     searchButton.addEventListener("click", handleSearchSubmit);
+    searchInput.addEventListener("input", updateSearchValue);
+    resetButton.addEventListener("click", resetPage);
+
 }
