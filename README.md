@@ -57,6 +57,7 @@ I would try to improve the UI of the website by styling the search and loading m
 I liked Luiz's Object-Oriented implementation of the website, and I would have liked to experiment with a similar approach too. I was also impressed by Marwan's animations and would've hoped to include similar features in my website to give it more vibrancy. I'm glad I was able to complete the project, and I think my overall approach and completion went well. However, I'd say almost half of the time dedicated to working on my project I spent helping others, and I didn't expect things to pick up so quickly as we appreciated the deadline.  
 
 ### Open-source libraries used
+
 https://fonts.google.com/icons
 https://fonts.google.com/
 
