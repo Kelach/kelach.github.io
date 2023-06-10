@@ -4,7 +4,7 @@ Submitted by: **Kelechi Emeruwa**
 
 Estimated time spent: **20** hours spent in total
 
-Deployed Application (optional): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (optional): [Flixster Deployed Site](https://kelach.github.io/)
 
 ### Application Features
 
