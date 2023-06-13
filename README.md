@@ -39,7 +39,7 @@ Deployed Application (optional): [Flixster Deployed Site](https://kelach.github.
 - [ X ] Implement anything else that you can get done to improve the app functionality!
 
 ### Walkthrough Video
-https://www.loom.com/share/5405e8c372b34bb6a04392872d5de5ba
+https://www.loom.com/share/bf319d780ef143e3921ba12414c9b3f5?sid=f55a6516-2e51-4217-953f-3f5e61fd1ee7
 
 
 ### Reflection
